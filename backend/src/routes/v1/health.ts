@@ -4,7 +4,7 @@ import { env } from '@backend/config/env';
 import { logger } from '@backend/config/logger';
 import { isRedisConnected } from '@backend/config/redis';
 import { evaluationQueue } from '@backend/queues/evaluation.queue';
-import { sendSuccessResponse, sendErrorResponse } from '@backend/utils/response';
+import { sendSuccessResponse } from '@backend/utils/response';
 
 const router = Router();
 

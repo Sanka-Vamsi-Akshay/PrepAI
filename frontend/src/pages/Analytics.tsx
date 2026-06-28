@@ -23,8 +23,7 @@ import {
   HelpCircle,
   Building,
   ThumbsUp,
-  ThumbsDown,
-  ListTodo
+  ThumbsDown
 } from 'lucide-react';
 
 const COMPANY_NAMES: Record<string, string> = {

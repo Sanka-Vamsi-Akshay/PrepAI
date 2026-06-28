@@ -56,7 +56,7 @@ export const extractTextFromBuffer = async (buffer: Buffer, mimeType: string): P
 /**
  * Local offline fallback parsing logic. Runs deterministically when GEMINI_API_KEY is not configured.
  */
-export const parseResumeOffline = (text: string, fileName: string): { parsedData: any; insights: any } => {
+export const parseResumeOffline = (text: string, _fileName: string): { parsedData: any; insights: any } => {
   const textLower = text.toLowerCase();
   
   // 1. Identify skills / tech by keyword matching

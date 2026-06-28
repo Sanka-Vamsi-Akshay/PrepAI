@@ -7,10 +7,8 @@ import {
   TrendingUp, 
   AlertTriangle, 
   CheckCircle2, 
-  Calendar, 
   Briefcase, 
   BookOpen, 
-  ChevronRight,
   Info
 } from 'lucide-react';
 import { 
@@ -18,12 +16,11 @@ import {
   useResume, 
   useResumeGapAnalysis, 
   useUploadResume, 
-  useDeleteResume, 
-  ResumeData 
+  useDeleteResume 
 } from '@/hooks/useResumes';
 
 export const ResumeAnalyzer: React.FC = () => {
-  const { data: resumes = [], isLoading: isListLoading, refetch: refetchList } = useResumes();
+  const { data: resumes = [], refetch: refetchList } = useResumes();
   const uploadMutation = useUploadResume();
   const deleteMutation = useDeleteResume();
 

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import * as bookmarkService from '@backend/services/bookmark.service';
 import { sendSuccessResponse } from '@backend/utils/response';
 import { AuthenticatedRequest } from '@backend/types';

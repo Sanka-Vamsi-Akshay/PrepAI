@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProblems, createSession, CodingProblem } from '@/services/coding.service';
-import { Play, Code, BookOpen, Clock, AlertCircle } from 'lucide-react';
+import { Play, BookOpen, Clock, AlertCircle } from 'lucide-react';
 
 export const CodingProblems: React.FC = () => {
   const [problems, setProblems] = useState<CodingProblem[]>([]);

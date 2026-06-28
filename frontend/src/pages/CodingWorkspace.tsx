@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 import {
@@ -17,8 +17,7 @@ import {
   RefreshCw,
   ArrowLeft,
   Info,
-  History,
-  Code
+  History
 } from 'lucide-react';
 
 export const CodingWorkspace: React.FC = () => {
@@ -60,7 +59,7 @@ export const CodingWorkspace: React.FC = () => {
   }, [lastSavedCode]);
 
   // Load Session details
-  const fetchSessionDetails = async () => {
+  const fetchSessionDetails = useCallback(async () => {
     if (!id) return;
     try {
       setLoading(true);
@@ -80,11 +79,11 @@ export const CodingWorkspace: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     fetchSessionDetails();
-  }, [id]);
+  }, [id, fetchSessionDetails]);
 
   // Autosave code every 5 seconds
   useEffect(() => {

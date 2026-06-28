@@ -5,7 +5,7 @@ import {
   TopicAnalytics, 
   SkillAnalytics
 } from '@backend/types/analytics';
-import { InterviewDomain, EvaluationStatus, CompanyProfile } from '@prisma/client';
+import { InterviewDomain, EvaluationStatus } from '@prisma/client';
 import { logger } from '@backend/config/logger';
 
 // List of target topics required by specifications

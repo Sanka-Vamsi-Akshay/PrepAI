@@ -1,5 +1,4 @@
 import { prisma } from '@backend/config/db';
-import { Bookmark } from '@prisma/client';
 
 export const toggleBookmark = async (userId: string, questionId: string): Promise<{ bookmarked: boolean }> => {
   const existing = await prisma.bookmark.findUnique({

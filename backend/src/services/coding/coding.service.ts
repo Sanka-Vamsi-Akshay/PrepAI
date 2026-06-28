@@ -1,5 +1,5 @@
 import { prisma } from '@backend/config/db';
-import { CodingSession, CodingSessionStatus, CodingEvaluation, CodingTopic, Difficulty, CodingExecution } from '@prisma/client';
+import { CodingSession, CodingSessionStatus, CodingEvaluation } from '@prisma/client';
 import { getExecutionProvider } from './execution.service';
 import * as geminiService from '@backend/services/ai/gemini.service';
 import { BadRequestError, NotFoundError, ForbiddenError } from '@backend/utils/appError';

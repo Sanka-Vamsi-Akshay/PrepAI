@@ -1,3 +1,4 @@
+process.env.ENABLE_TEST_RATE_LIMIT = 'true';
 const { PrismaClient } = require('@prisma/client');
 const http = require('http');
 const { spawn } = require('child_process');

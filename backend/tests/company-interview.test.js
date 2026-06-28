@@ -35,6 +35,7 @@ function makeRequest(method, path, body = null, headers = {}, cookieJar = {}) {
       path: urlObj.pathname + urlObj.search,
       method: method,
       headers: {
+        'x-test-bypass': 'true',
         ...headers
       }
     };
