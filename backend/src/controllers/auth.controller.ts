@@ -115,11 +115,7 @@ export const me = async (req: AuthenticatedRequest, res: Response, next: NextFun
 };
 
 export const bootstrap = async (req: Request, res: Response): Promise<void> => {
-  let csrfToken = req.cookies?.['XSRF-TOKEN'];
-  if (!csrfToken) {
-    csrfToken = generateCsrfToken();
-    setCsrfCookie(res, csrfToken);
-  }
+  const csrfToken = req.cookies?.['XSRF-TOKEN'] || (req as any).csrfToken;
 
   sendSuccessResponse(res, {
     statusCode: 200,

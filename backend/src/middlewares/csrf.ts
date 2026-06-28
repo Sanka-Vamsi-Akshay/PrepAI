@@ -63,10 +63,13 @@ export const csrfProtection = (req: Request, res: Response, next: NextFunction):
   }
 
   // 3. Ensure a CSRF token exists for the client
-  if (!cookieToken) {
-    const token = generateCsrfToken();
-    setCsrfCookie(res, token);
+  let activeToken = cookieToken;
+  if (!activeToken) {
+    activeToken = generateCsrfToken();
+    setCsrfCookie(res, activeToken);
   }
+
+  (req as any).csrfToken = activeToken;
 
   next();
 };
