@@ -1,0 +1,40 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# Uploads
+uploads/
+
+# Prisma generated files (if applicable)
+backend/prisma/dev.db
+backend/prisma/dev.db-journal
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+
+# Vite
+frontend/dist/
+
+# Backend build
+backend/dist/
