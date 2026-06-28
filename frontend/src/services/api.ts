@@ -12,6 +12,48 @@ export const apiClient = axios.create({
   xsrfHeaderName: 'X-XSRF-TOKEN',
 });
 
+const getCookie = (name: string): string | null => {
+  const match = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]*)'));
+  return match ? decodeURIComponent(match[2]) : null;
+};
+
+let bootstrapPromise: Promise<void> | null = null;
+
+export const ensureCsrfToken = (): Promise<void> => {
+  if (getCookie('XSRF-TOKEN')) {
+    return Promise.resolve();
+  }
+  if (!bootstrapPromise) {
+    bootstrapPromise = apiClient
+      .get('/auth/bootstrap')
+      .then(() => {})
+      .catch(() => {
+        return apiClient.get('/health/live').then(() => {});
+      })
+      .then(() => {})
+      .catch(() => {})
+      .finally(() => {
+        bootstrapPromise = null;
+      });
+  }
+  return bootstrapPromise;
+};
+
+// Request Interceptor: Guarantees CSRF token cookie existence before any state-changing request
+apiClient.interceptors.request.use(
+  async (config) => {
+    const method = config.method?.toLowerCase();
+    const isStateChanging = ['post', 'put', 'patch', 'delete'].includes(method || '');
+    const isExempt = config.url?.includes('/auth/bootstrap') || config.url?.includes('/health');
+
+    if (isStateChanging && !isExempt && !getCookie('XSRF-TOKEN')) {
+      await ensureCsrfToken();
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Response Interceptor: Centralized success and error formatting
 apiClient.interceptors.response.use(
   (response) => {

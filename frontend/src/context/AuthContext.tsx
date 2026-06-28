@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiClient } from '@/services/api';
+import { apiClient, ensureCsrfToken } from '@/services/api';
 import { User } from '@/types';
 
 interface AuthContextType {
@@ -26,6 +26,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     queryKey: ['authUser'],
     queryFn: async () => {
       try {
+        await ensureCsrfToken();
         const response = await apiClient.get('/auth/me');
         return response.data.data.user as User;
       } catch (err) {

@@ -113,3 +113,17 @@ export const me = async (req: AuthenticatedRequest, res: Response, next: NextFun
     next(error);
   }
 };
+
+export const bootstrap = async (req: Request, res: Response): Promise<void> => {
+  let csrfToken = req.cookies?.['XSRF-TOKEN'];
+  if (!csrfToken) {
+    csrfToken = generateCsrfToken();
+    setCsrfCookie(res, csrfToken);
+  }
+
+  sendSuccessResponse(res, {
+    statusCode: 200,
+    message: 'CSRF token initialized successfully',
+    data: { csrfToken },
+  });
+};

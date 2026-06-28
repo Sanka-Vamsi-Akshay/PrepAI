@@ -47,11 +47,14 @@ export const csrfProtection = (req: Request, res: Response, next: NextFunction):
   const cookieToken = req.cookies?.[COOKIE_NAME];
   const isStateChanging = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method);
 
-  // 1. Exclude health endpoints from CSRF validation
-  const isHealth = cleanPath.startsWith('/api/v1/health') || cleanPath.startsWith('/health');
+  // 1. Exclude health and bootstrap endpoints from CSRF validation
+  const isExempt = 
+    cleanPath.startsWith('/api/v1/health') || 
+    cleanPath.startsWith('/health') ||
+    cleanPath.includes('/auth/bootstrap');
 
-  // 2. Validate token on state-changing operations (excluding health endpoints)
-  if (isStateChanging && !isHealth) {
+  // 2. Validate token on state-changing operations (excluding health and bootstrap endpoints)
+  if (isStateChanging && !isExempt) {
     const headerToken = req.headers[HEADER_NAME] as string;
 
     if (!cookieToken || !headerToken || !safeCompare(cookieToken, headerToken)) {
