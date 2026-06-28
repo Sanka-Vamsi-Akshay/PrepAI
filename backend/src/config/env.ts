@@ -16,6 +16,7 @@ const envSchema = z.object({
   GEMINI_API_KEY: z.string().optional(),
   REDIS_HOST: z.string().default('localhost'),
   REDIS_PORT: z.coerce.number().default(6379),
+  REDIS_USERNAME: z.string().default("default"),
   REDIS_PASSWORD: z.string().optional(),
   ANALYTICS_CACHE_TTL_SECONDS: z.coerce.number().default(300),
 });

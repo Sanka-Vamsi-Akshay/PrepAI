@@ -26,7 +26,11 @@ let isConnected = false;
 export const redisOptions = {
   host: env.REDIS_HOST,
   port: env.REDIS_PORT,
+  username: env.REDIS_USERNAME,
   password: env.REDIS_PASSWORD || undefined,
+
+  tls: {},
+
   maxRetriesPerRequest: null, // Required by BullMQ
   retryStrategy(times: number) {
     const delay = Math.min(times * 100, 3000); // Exponential backoff capped at 3s
