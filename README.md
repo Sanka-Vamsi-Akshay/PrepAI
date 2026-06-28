@@ -7,20 +7,40 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
-PrepAI is a comprehensive, production-grade AI-powered interview preparation platform. It empowers software developers and technical candidates to excel in technical and behavioral interviews through resume intelligence, personalized AI mock interviews, company-specific interview simulators, full-fledged coding environments with real-time evaluation, and deep analytics.
+PrepAI is an enterprise-grade, full-stack AI platform designed to simulate end-to-end technical hiring processes. It integrates resume intelligence, personalized AI mock interviews, company-specific evaluation rubrics, an embedded multi-language coding workspace, and deep analytics to prepare candidates for modern software engineering roles.
+
+---
+
+## 🌐 Live Demo
+
+- **Frontend Application**: 📷 TODO: Add Frontend Production URL (Add after deployment)
+- **Backend API Base**: 📷 TODO: Add Backend Production API URL (Add after deployment)
+
+---
+
+## 💡 Why PrepAI?
+
+Traditional technical interview preparation is often fragmented—candidates practice coding on isolated platforms, review resumes independently, and lack realistic, real-time feedback on behavioral and architectural interview questions. PrepAI bridges this gap by offering a single unified platform. By combining automated resume parsing, adaptive AI mock interviews, real-time code execution with hidden test validation, and company-tailored hiring standards, PrepAI delivers actionable multi-dimensional feedback to help engineers systematically improve their interview performance.
+
+---
+
+## ⚡ Project Highlights
+
+- **🏢 9 Company Interview Profiles**: Custom hiring rubrics and focus areas for Google, Meta, Amazon, Microsoft, Startups, Accenture, TCS, Infosys, and Wipro.
+- **💻 Full Coding Simulator**: Monaco editor supporting Python, Java, and JavaScript with public and hidden test case evaluation.
+- **📄 Resume Intelligence Engine**: PDF/DOCX parsing, 0–100% ATS readability scoring, skill extraction, and target domain gap analysis.
+- **🤖 Adaptive AI Evaluation**: Multi-metric scoring for technical correctness, communication clarity, and problem-solving depth powered by Google Gemini.
+- **📊 Granular Analytics**: Real-time dashboards tracking topic performance, language distribution, coding difficulty breakdown, and company readiness indices.
+- **🛡️ Hardened Production Security**: Strict MIME validation, specialized rate limiters, JWT environment guards, and secure SameSite cookies.
+- **🔄 Deterministic Offline Fallbacks**: High-availability regex and heuristic engines ensuring functionality during external AI API outages.
+- **🧪 100% Verified Integration Test Suites**: 7 comprehensive test suites validating security, authentication, resume parsing, coding, and company modes.
+- **📦 Cloud & Container Ready**: Docker Compose orchestration with optimized deployment workflows for Railway and Vercel.
 
 ---
 
 ## 📋 Table of Contents
 
 - [Features](#-features)
-  - [🤖 AI Mock Interviews](#-ai-mock-interviews)
-  - [📄 Resume Intelligence](#-resume-intelligence)
-  - [🎯 Personalized Interviews](#-personalized-interviews)
-  - [🏢 Company Interview Modes](#-company-interview-modes)
-  - [💻 Coding Interview Simulator](#-coding-interview-simulator)
-  - [📊 Analytics](#-analytics)
-  - [✨ Productivity](#-productivity)
 - [Screenshots](#-screenshots)
 - [Technology Stack](#-technology-stack)
 - [Architecture](#-architecture)
@@ -29,7 +49,7 @@ PrepAI is a comprehensive, production-grade AI-powered interview preparation pla
 - [Environment Variables](#-environment-variables)
 - [API Overview](#-api-overview)
 - [Security & Hardening](#-security--hardening)
-- [Testing & Quality Verification](#-testing--quality-verification)
+- [Testing](#-testing)
 - [Production Deployment](#-production-deployment)
 - [Future Roadmap](#-future-roadmap)
 - [Contributing](#-contributing)
@@ -40,89 +60,65 @@ PrepAI is a comprehensive, production-grade AI-powered interview preparation pla
 ## ✨ Features
 
 ### 🤖 AI Mock Interviews
-- **Curated Question Bank**: Comprehensive domain-specific questions covering Frontend, Backend, Fullstack, DevOps, Mobile, and System Design across Easy, Medium, and Hard difficulties.
-- **Dynamic Interview Sessions**: Real-time structured interview execution with dynamic adaptive follow-up questions tailored to candidate answers.
-- **AI Evaluation Engine**: Multi-dimensional grading covering technical accuracy, communication clarity, depth of knowledge, and problem-solving framework.
-- **Asynchronous Background Processing**: Offloads AI evaluation generation to resilient BullMQ background workers backed by Redis queues.
-- **Real-time Notifications**: In-app notifications alerting candidates when AI evaluations and detailed feedback reports are ready.
+- **Curated Question Bank**: Domain-specific questions across Frontend, Backend, Fullstack, DevOps, Mobile, and System Design.
+- **Adaptive Session Execution**: Dynamic follow-up questions tailored to candidate responses.
+- **Multi-Metric AI Grading**: Evaluates technical accuracy, communication clarity, and structural depth.
+- **Asynchronous Processing**: Background job processing via BullMQ workers and Redis queues for heavy evaluation tasks.
+- **Notification Alerts**: In-app alerts when evaluations and feedback reports complete.
 
 ### 📄 Resume Intelligence
-- **Multi-Format Uploads**: Secure upload and processing for PDF (`application/pdf`) and DOCX (`application/vnd.openxmlformats-officedocument.wordprocessingml.document`) documents up to 5MB.
-- **Automated Resume Parsing**: Extracts candidate experience, education, projects, skills, and certifications using Gemini AI with deterministic offline fallback parsing.
-- **Comprehensive Resume Score**: Calculates an overall ATS readability and impact score (0–100%) based on skill density, structural formatting, and quantifiable achievements.
-- **Skill Extraction & Verification**: Identifies technical skills, tools, frameworks, and domain competencies.
-- **Targeted Gap Analysis**: Compares parsed candidate profiles against specific engineering roles (Frontend, Backend, Fullstack, DevOps) to surface missing skills and experience gaps.
-- **Actionable Learning Roadmap**: Generates structured, step-by-step recommendation plans to bridge identified skill gaps.
+- **Multi-Format Parsing**: Secure uploading for PDF and DOCX files up to 5MB.
+- **ATS Impact Scoring**: Calculates resume impact scores (0–100%) based on skill density and quantifiable achievements.
+- **Skill & Gap Analysis**: Extracts core competencies and benchmarks profiles against target engineering roles to highlight skill gaps and generate learning roadmaps.
 
 ### 🎯 Personalized Interviews
-- **Resume-Based Contextual Questions**: Tailors technical interview questions specifically to the candidate's actual projects, listed technologies, and work experience.
-- **Resume Alignment Score**: Evaluates how closely candidate answers align with their claimed background and experience level.
-- **Consistency Score**: Measures verbal consistency and technical narrative continuity across multiple interview responses.
-- **Confidence & Depth Score**: Assesses technical authority, precision, and confidence in explaining complex architectural choices.
+- **Contextual Questioning**: Generates technical questions directly rooted in candidate resume experience and projects.
+- **Alignment & Consistency**: Scores answer consistency, technical authority, and background narrative alignment.
 
 ### 🏢 Company Interview Modes
-PrepAI features dedicated interview modes tailored to specific company hiring bars, focus areas, and evaluation criteria across **9 supported company profiles**:
+Tailored evaluation criteria and targeted focus areas across 9 company profiles:
 
-| Company | Focus Areas | Default Difficulty |
+| Company | Key Focus Areas | Default Difficulty |
 | :--- | :--- | :--- |
-| **Google** | Scalability, Algorithms, System Architecture | Hard |
-| **Meta** | System Design, Product Architecture, Rapid Coding | Hard |
+| **Google** | Scalability, Distributed Systems, Advanced Algorithms | Hard |
+| **Meta** | System Architecture, Rapid Product Coding | Hard |
 | **Amazon** | Leadership Principles, System Architecture, Code Efficiency | Medium-Hard |
 | **Microsoft** | Pragmatic Engineering, Object-Oriented Design, Security | Medium-Hard |
-| **Startup** | Fullstack Versatility, Practical Delivery, System Architecture | Medium |
+| **Startup** | Fullstack Versatility, Practical Delivery, Architecture | Medium |
 | **Accenture** | Technical Fundamentals, Delivery Frameworks | Easy-Medium |
 | **TCS** | Software Fundamentals, Core Computer Science | Easy |
-| **Infosys** | Programming Principles, Problem Solving | Easy |
+| **Infosys** | Programming Principles, Logical Problem Solving | Easy |
 | **Wipro** | Software Lifecycle, Fundamental Concepts | Easy |
 
-- **Tailored Question Generation**: Generates company-tailored technical questions focusing on specific engineering pillars (e.g., Google's distributed systems, Amazon's Leadership Principles).
-- **Company-Specific Evaluator**: Evaluates responses against the specific company's hiring standards and core evaluation pillars.
-
 ### 💻 Coding Interview Simulator
-- **Embedded Monaco Code Editor**: Feature-rich browser IDE with syntax highlighting, auto-completion, line numbers, and theme customizations powered by VS Code's editor engine.
-- **Multi-Language Support**: Full coding environment supporting **Python**, **Java**, and **JavaScript**.
-- **Run & Submit Modes**: Test solutions against public sample test cases before final submission.
-- **Hidden Test Case Validation**: Validates code against hidden edge-case test suites during submission to evaluate correctness and boundary handling.
-- **AI Code Review & Scoring**: Multi-metric evaluation scoring solutions on Correctness, Code Quality, Time/Space Complexity, and Optimization Opportunities.
-- **Dual Execution Provider Architecture**: Pluggable code execution framework configurable via environment variables:
-  - `PistonExecutionProvider`: Executes code inside isolated, secure, time-bounded sandbox environments via Piston API.
-  - `MockExecutionProvider`: Deterministic local mock sandbox execution for rapid development and offline testing.
-- **Offline Static Code Analyzer**: Fallback static code analysis engine verifying syntax structures, algorithmic efficiency, and test execution offline.
+- **Monaco IDE Integration**: In-browser editing engine supporting **Python**, **Java**, and **JavaScript**.
+- **Run & Submit Modes**: Execution testing against sample inputs and hidden validation test cases.
+- **Pluggable Execution Architecture**: Configurable between `PistonExecutionProvider` (sandboxed container compilation) and `MockExecutionProvider` (local deterministic development execution).
+- **Static Analyzer Fallback**: Offline static analysis for syntax verification and test evaluation.
 
-### 📊 Analytics
-- **Interactive Overview Dashboard**: Tracks total mock interviews, coding sessions completed, cumulative practice hours, and average scores.
-- **Performance Progress Tracking**: Visual performance trends mapped over daily and weekly practice intervals.
-- **Coding Statistics**: Detailed breakdown of coding problems solved by difficulty (Easy, Medium, Hard), success rate, language usage distribution, and topic strength/weakness matrices.
-- **Resume Intelligence Analytics**: Visual breakdown of candidate skill distribution, resume scores, and domain gap analysis.
-- **Company Readiness Index**: Aggregated readiness scores indicating interview preparedness for specific companies (e.g., Google Readiness vs. Amazon Readiness).
-- **Topic & Skill Performance Breakdown**: Granular skill mastery tracking across Dynamic Programming, System Design, Data Structures, SQL, and specific framework ecosystems.
-
-### ✨ Productivity
-- **Automatic Code Saving**: Periodic autosave every 5 seconds during active coding sessions to prevent data loss.
-- **Draft Recovery & Protection**: Unsaved changes protection and automatic draft restoration prompt upon page refresh or network disconnection.
-- **Question Bookmarking**: Save and categorize challenging interview questions for later review and focused study.
-- **Notification Center**: Real-time status alerts for background processing, evaluation readiness, and application milestones.
-- **Quick Start Mode**: Instantly launch domain-specific mock interview sessions with a single click.
-- **Resume Selector**: Switch between uploaded resume profiles seamlessly when launching personalized interview sessions.
+### 📊 Analytics & Productivity
+- **Interactive Overview**: Practice hours tracking, coding difficulty distribution, and topic strength matrices.
+- **Company Readiness Index**: Aggregated readiness metrics for targeted tech companies.
+- **Productivity Workflows**: 5-second periodic code autosave, draft protection on page refresh, question bookmarking, and quick-start interview execution.
 
 ---
 
-## 🖼️ Screenshots
+## 📷 Screenshots
 
 ### Dashboard
-*(Add screenshot here)*
+📷 TODO: Add Dashboard Screenshot
 
 ### Resume Analyzer
-*(Add screenshot here)*
+📷 TODO: Add Resume Analyzer Screenshot
 
 ### Coding Workspace
-*(Add screenshot here)*
+📷 TODO: Add Coding Workspace Screenshot
 
 ### Analytics
-*(Add screenshot here)*
+📷 TODO: Add Analytics Screenshot
 
 ### Interview Workspace
-*(Add screenshot here)*
+📷 TODO: Add Interview Workspace Screenshot
 
 ---
 
@@ -130,28 +126,19 @@ PrepAI features dedicated interview modes tailored to specific company hiring ba
 
 | Layer | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Frontend** | React 18 | Declarative component-based UI framework |
-| | TypeScript | End-to-end static type safety |
-| | Vite | Lightning-fast build tool and dev server |
-| | Tailwind CSS v4 | CSS-first styling engine with customized theme tokens |
-| | React Query | Asynchronous server-state management and caching |
-| | Axios | HTTP client with security interceptors |
-| | Monaco Editor | In-browser code editing engine |
-| **Backend** | Node.js | Asynchronous server runtime engine |
-| | Express | Enterprise HTTP API routing and middleware framework |
-| | TypeScript | Strict server-side type safety |
-| | Prisma ORM | Type-safe database client and migration engine |
-| | PostgreSQL | Production relational database engine |
-| | BullMQ | Distributed background job queue processor |
-| | Redis | High-performance memory store for caching and queues |
-| | Zod | Runtime environment and schema validation |
-| | Winston / Morgan | Structured logging and HTTP request profiling |
-| **AI Layer** | Google Gemini | Generative AI models (`@google/genai`) for questions & evaluations |
-| | Deterministic Engine | Offline regex, heuristic, and static analysis fallback parsers |
-| **Infrastructure** | Docker / Docker Compose | Multi-container application orchestration |
-| | Railway | Cloud hosting for Backend, Worker, Postgres, and Redis |
-| | Vercel | Production edge hosting for Frontend SPA |
-| | GitHub Actions | Automated CI/CD build, lint, and verification pipelines |
+| **Frontend** | React 18 / TypeScript | Type-safe declarative component UI library |
+| | Vite / Tailwind CSS v4 | Build tooling and CSS-first design engine |
+| | React Query / Axios | Server state caching and secure HTTP client |
+| | Monaco Editor | In-browser VS Code editing environment |
+| **Backend** | Node.js / Express | Server runtime and modular REST API framework |
+| | TypeScript / Zod | End-to-end type safety and environment validation |
+| | Prisma ORM / PostgreSQL | Relational data management and migration engine |
+| | BullMQ / Redis | Distributed asynchronous job processing and caching |
+| **AI & Execution** | Google Gemini API | Generative AI models (`@google/genai`) for evaluations |
+| | Piston Engine / Static Analyzer | Sandboxed multi-language compilation and offline fallback |
+| **Infrastructure** | Docker Compose | Multi-container application orchestration |
+| | Railway / Vercel | Cloud platform hosting for API/Worker/DB and SPA |
+| | GitHub Actions | Automated CI/CD verification pipelines |
 
 ---
 
@@ -177,68 +164,45 @@ graph TD
     API -->|Execute Code| Piston
 ```
 
-### Component Breakdown
-- **Browser (Client)**: React SPA providing an interactive user workspace, Monaco editor, dynamic charts, and client-side draft restoration.
-- **Backend API**: Stateless Express server handling authentication, validation, security headers, rate limiting, and core domain services.
-- **PostgreSQL Database**: Relational datastore managed via Prisma ORM storing users, questions, interview sessions, coding problems, submissions, evaluations, and execution logs.
-- **Redis & BullMQ**: In-memory cache store managing session tokens, analytics caching, and asynchronous job queuing for long-running AI evaluation tasks.
-- **BullMQ Worker**: Background consumer process dedicated to executing asynchronous AI processing jobs without blocking HTTP request execution.
-- **Google Gemini API**: External LLM engine generating dynamic questions, scoring technical answers, evaluating coding solutions, and extracting resume insights.
-- **Piston Provider**: Isolated code compilation and execution engine executing untrusted Python, Java, and JavaScript code securely inside time-bounded containers.
-
 ---
 
 ## 📁 Project Structure
 
 ```text
 ai-interview-platform/
-├── .github/
-│   └── workflows/             # GitHub Actions CI/CD workflows
-├── backend/                   # Node.js + Express + TypeScript API server
-│   ├── prisma/                # Prisma ORM schema & database seed files
-│   │   ├── schema.prisma      # Complete database models & relations
-│   │   └── seed.ts            # Starter questions & 20 coding problems seed script
+├── .github/workflows/         # GitHub Actions CI pipelines
+├── backend/                   # Express + TypeScript API Server
+│   ├── prisma/                # Schema definitions & database seeds
+│   │   ├── schema.prisma      # Models: User, Question, Session, CodingProblem, Evaluation
+│   │   └── seed.ts            # Starter question bank & 20 coding problems
 │   ├── src/
 │   │   ├── config/            # Environment validation, logger, Redis, DB client
 │   │   ├── controllers/       # Route controllers (Auth, Resume, Coding, Interviews)
-│   │   ├── middlewares/       # Security, rate limiting, upload validation, auth guard
+│   │   ├── middlewares/       # Security, rate limiters, upload validation, auth guard
 │   │   ├── queues/            # BullMQ job queues and workers
 │   │   ├── routes/            # Versioned REST API endpoints (/api/v1)
-│   │   ├── services/          # Core business logic layer
-│   │   │   ├── ai/            # Gemini AI integration and fallback prompts
-│   │   │   ├── coding/        # Coding problems, execution providers (Piston/Mock)
-│   │   │   ├── resume.service.ts # Resume parsing and gap analysis logic
-│   │   │   └── analytics.service.ts # Aggregate analytics & caching calculation
-│   │   ├── types/             # Backend TypeScript interfaces & types
-│   │   ├── utils/             # Operational error classes & response handlers
-│   │   ├── app.ts             # Express application pipeline configuration
-│   │   ├── index.ts           # HTTP server bootstrapping & graceful shutdown
-│   │   └── worker.ts          # Standalone background worker process bootstrapper
-│   ├── tests/                 # Integration test suites (Auth, Resume, Coding, Security)
-│   ├── Dockerfile             # Multi-stage production container build for backend
-│   └── package.json           # Backend dependencies & npm scripts
-├── frontend/                  # React + TypeScript + Vite SPA client
+│   │   ├── services/          # Business logic (AI, Coding, Resume, Analytics)
+│   │   ├── utils/             # Operational error handling classes
+│   │   ├── app.ts             # Express application pipeline setup
+│   │   ├── index.ts           # Server entrypoint & graceful shutdown
+│   │   └── worker.ts          # Background job process runner
+│   ├── tests/                 # 7 verified integration test suites
+│   └── Dockerfile             # Production container definition
+├── frontend/                  # React + Vite SPA Client
 │   ├── src/
-│   │   ├── assets/            # Static assets and media resources
-│   │   ├── components/        # Reusable component library (Workspace, Analytics, Modals)
-│   │   ├── hooks/             # Custom React Query hooks (useInterviews, useResumes)
-│   │   ├── layouts/           # Structural dashboard shells
-│   │   ├── pages/             # Main view pages (Analytics, CodingWorkspace, ResumeAnalyzer)
-│   │   ├── services/          # Axios HTTP service client
-│   │   ├── store/             # Global client state management
-│   │   └── types/             # Frontend TypeScript models
-│   ├── Dockerfile             # Multi-stage build with Nginx web server
-│   └── package.json           # Frontend dependencies & Vite setup
-├── uploads/                   # Local storage directory for uploaded resumes (Git-ignored)
-├── docker-compose.yml         # Development multi-container orchestration
-└── docker-compose.prod.yml    # Production multi-container hardened stack
+│   │   ├── components/        # UI components (Workspace, Analytics, Modals)
+│   │   ├── hooks/             # React Query hooks (useInterviews, useResumes)
+│   │   ├── pages/             # Page views (Analytics, CodingWorkspace, ResumeAnalyzer)
+│   │   └── services/          # Axios HTTP client
+│   └── Dockerfile             # Multi-stage build with Nginx
+├── uploads/                   # Local storage for uploaded resumes
+├── docker-compose.yml         # Development environment stack
+└── docker-compose.prod.yml    # Production hardened stack
 ```
 
 ---
 
 ## 🚀 Installation & Execution
-
-You can set up PrepAI either locally on your host machine or fully containerized using Docker Compose.
 
 ### Option A: Local Bare-Metal Execution (Recommended for Dev)
 
@@ -257,14 +221,14 @@ npm install
 # Configure environment variables
 cp .env.example .env
 
-# Generate Prisma Client & Push Database Schema
+# Generate Prisma Client & Run Database Migrations
 npm run prisma:generate
-npx prisma db push
+npx prisma migrate dev
 
-# Seed starter questions and 20 coding problems
+# Seed database with starter questions & 20 coding problems
 npx prisma db seed
 
-# Start API dev server (runs on http://localhost:5000)
+# Start API dev server (http://localhost:5000)
 npm run dev
 ```
 
@@ -281,7 +245,7 @@ cd frontend
 # Install dependencies
 npm install
 
-# Start Vite dev server (runs on http://localhost:5173 or http://localhost:8080)
+# Start Vite dev server (http://localhost:5173 or http://localhost:8080)
 npm run dev
 ```
 
@@ -289,103 +253,87 @@ npm run dev
 
 ### Option B: Docker Compose Execution
 
-Spin up the entire application stack (Frontend, Backend API, Background Worker, PostgreSQL, and Redis) with a single command:
+Spin up all services (Frontend, Backend API, Worker, PostgreSQL, Redis) simultaneously:
 
 ```bash
-# Build and start all services in detached mode
+# Build and launch containers
 docker compose up --build -d
 
-# Apply Prisma migrations inside the backend container
-docker compose exec backend npx prisma migrate deploy
+# Apply database migrations inside container
+docker compose exec backend npx prisma migrate dev
 
-# Seed the database inside the backend container
+# Seed database inside container
 docker compose exec backend npx prisma db seed
 ```
-
-Access Points:
-- **Frontend SPA**: [http://localhost:8080](http://localhost:8080) (or `http://localhost:5173`)
-- **Backend API Base**: [http://localhost:5000/api/v1](http://localhost:5000/api/v1)
-- **Health Check**: [http://localhost:5000/api/v1/health/live](http://localhost:5000/api/v1/health/live)
 
 ---
 
 ## 🔐 Environment Variables
 
-### Backend Configuration (`backend/.env`)
+### Backend (`backend/.env`)
 
 | Variable | Description | Default / Example |
 | :--- | :--- | :--- |
-| `DATABASE_URL` | PostgreSQL connection URL | `postgresql://postgres:postgres@localhost:5432/ai_interview_db?schema=public` |
-| `JWT_SECRET` | Secret key for signing JWT auth tokens (Production crashes if default string is used) | `super_secret_jwt_key_change_me_in_production` |
-| `REDIS_HOST` | Hostname for Redis connection | `localhost` |
-| `REDIS_PORT` | Port for Redis connection | `6379` |
-| `REDIS_PASSWORD` | Optional password for Redis connection | `""` |
-| `GEMINI_API_KEY` | Google Gemini API key (Triggers offline deterministic fallback if omitted) | `AIzaSy...` |
-| `CODE_EXECUTION_PROVIDER` | Execution provider selector (`piston` or `mock`) | `mock` |
-| `PISTON_URL` | Endpoint URL for Piston execution engine | `https://emkc.org/api/v2/piston` |
-| `ANALYTICS_CACHE_TTL_SECONDS` | Cache expiration time in seconds for analytics endpoints | `300` |
-| `CORS_ORIGIN` | Allowed origin for Cross-Origin Request Sharing | `http://localhost:8080` |
-| `FRONTEND_URL` | Base URL of the frontend client for security redirects | `http://localhost:8080` |
+| `DATABASE_URL` | PostgreSQL connection string | `postgresql://postgres:postgres@localhost:5432/ai_interview_db?schema=public` |
+| `JWT_SECRET` | Auth token signing key (Production crashes if default key is used) | `super_secret_jwt_key_change_me_in_production` |
+| `REDIS_HOST` | Hostname for Redis instance | `localhost` |
+| `REDIS_PORT` | Connection port for Redis | `6379` |
+| `GEMINI_API_KEY` | Google Gemini API key (Triggers offline fallback if omitted) | `AIzaSy...` |
+| `CODE_EXECUTION_PROVIDER` | Execution provider (`piston` or `mock`) | `mock` |
+| `PISTON_URL` | Endpoint for Piston execution engine | `https://emkc.org/api/v2/piston` |
+| `ANALYTICS_CACHE_TTL_SECONDS` | Analytics caching expiration time in seconds | `300` |
+| `CORS_ORIGIN` | Allowed origin for client requests | `http://localhost:8080` |
+| `FRONTEND_URL` | Client application URL | `http://localhost:8080` |
 
-### Frontend Configuration (`frontend/.env`)
+### Frontend (`frontend/.env`)
 
 | Variable | Description | Default / Example |
 | :--- | :--- | :--- |
-| `VITE_API_URL` | Base API endpoint URL consumed by Axios service client | `http://localhost:5000/api/v1` |
+| `VITE_API_URL` | Base API endpoint for client network calls | `http://localhost:5000/api/v1` |
 
 ---
 
 ## 📡 API Overview
 
-The PrepAI REST API (`/api/v1`) provides organized modules handling core application domains:
+The REST API (`/api/v1`) is structured into distinct domain modules:
 
-- **🔐 Authentication (`/auth`)**: User registration, authentication login, profile retrieval, logout, and token session verification.
-- **❓ Questions (`/questions`)**: Domain question filtering by difficulty, topic, category, and premium access state.
-- **📥 Submissions (`/submissions`)**: Submission records, evaluation details, and answer history retrieval.
-- **🎙️ Interviews (`/interviews`)**: Session creation, quick-start setup, response submission, evaluation generation, and company-mode sessions.
-- **📊 Analytics (`/analytics`)**: User dashboards, progress tracking trends, coding analytics, topic mastery, and company readiness metrics.
-- **🔖 Bookmarks (`/bookmarks`)**: Bookmark toggling and retrieval of saved practice questions.
-- **🔔 Notifications (`/notifications`)**: User notification feed management and mark-as-read updates.
-- **📄 Resumes (`/resumes`)**: PDF/DOCX file upload, resume listing, detailed parsing breakdown, gap analysis, and resume deletion.
-- **💻 Coding (`/coding`)**: Coding problem bank retrieval, coding session initialization, code saving, run execution, submission, and coding evaluation retrieval.
-- **🏥 Health (`/health`)**: Liveness (`/health/live`) and readiness (`/health/ready`) health check probes.
+- **🔐 Authentication (`/auth`)**: Registration, login, session validation, logout, and profile management.
+- **❓ Questions (`/questions`)**: Question catalog filtering by domain, difficulty, and company profile.
+- **📥 Submissions (`/submissions`)**: Candidate submission history, grading records, and feedback retrieval.
+- **🎙️ Interviews (`/interviews`)**: Session initialization, adaptive response processing, and evaluation generation.
+- **📊 Analytics (`/analytics`)**: Dashboard metrics, skill gap tracking, coding stats, and company readiness indices.
+- **🔖 Bookmarks (`/bookmarks`)**: Managing and retrieving saved practice questions.
+- **🔔 Notifications (`/notifications`)**: Real-time user alert feed and status updates.
+- **📄 Resumes (`/resumes`)**: PDF/DOCX parsing, ATS scoring, and engineering gap analysis.
+- **💻 Coding (`/coding`)**: Problem catalog retrieval, session execution runs, test submission, and code reviews.
+- **🏥 Health (`/health`)**: Infrastructure liveness (`/health/live`) and readiness (`/health/ready`) probes.
 
 ---
 
 ## 🛡️ Security & Hardening
 
-PrepAI incorporates production security best practices:
-
-- **JWT Authentication & Secure Cookies**: Authentication tokens delivered via strictly configured `httpOnly`, `sameSite='lax'`, and `secure` (in production) cookies.
-- **CSRF Protection**: Multi-layered CSRF token validation protecting state-modifying requests.
-- **Helmet Security Headers**: HTTP security headers locked down to prevent cross-site scripting (XSS), clickjacking, and MIME-sniffing attacks.
-- **Specialized Rate Limiting**: Dedicated rate limiters configured to protect high-impact vectors:
-  - Resume Uploads: Max 5 uploads / 15 mins.
-  - Code Executions: Max 15 runs / 15 mins.
-  - AI-Intensive Actions: Max 10 requests / 15 mins.
-  - Evaluation Retries: Max 3 retries / 15 mins.
-- **Resume Upload Hardening**: Multi-stage upload validation checking strict MIME types (`application/pdf`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`), single-file payload bounds, and 5MB file size caps.
-- **Production Secret Validation**: Backend boot sequence checks process environment configurations and immediately exits if default insecure JWT secrets or credentials are detected in production.
-- **Trust Proxy Configuration**: Configured Express `trust proxy` settings ensuring accurate client IP resolution behind reverse proxies (Nginx, Railway, Vercel).
-- **Offline AI Fallbacks**: Deterministic offline parsing and evaluation fallback handlers ensuring application availability even during external API outages.
+- **Secure Authentication**: Delivered via `httpOnly`, `sameSite='lax'`, and production `secure` cookies.
+- **CSRF & Header Protection**: Multi-layer CSRF token verification and Helmet HTTP header security enforcement.
+- **Specialized Rate Limiters**: Enforces strict throttling across high-impact endpoints (Resume uploads: 5/15m, Code runs: 15/15m, AI requests: 10/15m).
+- **Resume File Hardening**: Strict MIME validation (`application/pdf`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and 5MB payload limits.
+- **Production Secret Validation**: Backend startup validation immediately halts execution if default JWT secrets are detected in production.
+- **Offline AI Fallbacks**: Deterministic regex and heuristic parsing engines maintain service availability during external API outages.
 
 ---
 
-## 🧪 Testing & Quality Verification
+## 🧪 Testing
 
-PrepAI contains comprehensive integration test suites located in `backend/tests/` verifying critical user workflows:
+PrepAI includes 7 integration test suites located in `backend/tests/` to verify application integrity:
 
-| Test Suite | Focus & Verification |
-| :--- | :--- |
-| `integration.test.js` | Full end-to-end user authentication lifecycle, question fetching, and answer submission flow. |
-| `ux-upgrade.test.js` | Validates bookmarking functionality, notifications feed, and UI productivity flows. |
-| `resume-phase1.test.js` | Verifies resume upload processing, parsing extraction, resume scoring, and domain gap analysis. |
-| `personalized-interview.test.js` | Tests contextual resume-based interview generation, alignment scoring, and consistency metrics. |
-| `company-interview.test.js` | Verifies company-specific question generation, company difficulty mapping, and company readiness evaluations across all 9 profiles. |
-| `coding-interview.test.js` | Tests coding problem retrieval, session autosave, code execution sandbox runs, test case submission, and execution history persistence. |
-| `production-hardening.test.js` | Verifies production security guardrails: JWT boot crash validation, secure SameSite cookie policies, MIME verification, file size caps, and rate limiter HTTP 429 enforcement. |
+- `integration.test.js`: Full authentication, question retrieval, and submission flows.
+- `ux-upgrade.test.js`: Bookmarks, notifications, and UI interaction flows.
+- `resume-phase1.test.js`: Resume uploads, ATS scoring, and gap analysis.
+- `personalized-interview.test.js`: Resume-contextual questions and consistency scoring.
+- `company-interview.test.js`: Company question generation and company readiness evaluations.
+- `coding-interview.test.js`: Monaco editor execution, test case validation, and session history.
+- `production-hardening.test.js`: JWT production guards, SameSite cookies, MIME verification, and rate limits.
 
-Run tests locally:
+Run tests:
 ```bash
 cd backend
 node tests/production-hardening.test.js
@@ -398,7 +346,7 @@ node tests/coding-interview.test.js
 
 ### Railway Deployment (Backend API, Worker, Postgres, Redis)
 
-1. **Create Railway Project**: Provision PostgreSQL and Redis databases from the Railway template catalog.
+1. **Provision Databases**: Create PostgreSQL and Redis instances in Railway.
 2. **Deploy Backend Service**:
    - Root Directory: `/backend`
    - Build Command: `npm run build`
@@ -407,45 +355,41 @@ node tests/coding-interview.test.js
    - Root Directory: `/backend`
    - Build Command: `npm run build`
    - Start Command: `node dist/worker.js`
-4. **Configure Environment Variables**: Attach `DATABASE_URL`, `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`, `JWT_SECRET`, `GEMINI_API_KEY`, `NODE_ENV=production`.
+4. **Environment Variables**: Configure `DATABASE_URL`, `REDIS_HOST`, `REDIS_PORT`, `JWT_SECRET`, `GEMINI_API_KEY`, `NODE_ENV=production`.
 
 ### Vercel Deployment (Frontend SPA)
 
-1. **Connect Repository**: Import project into Vercel and set Root Directory to `frontend`.
-2. **Framework Preset**: Select `Vite`.
-3. **Environment Variables**: Set `VITE_API_URL` pointing to your deployed Railway Backend API URL (e.g., `https://backend-production.up.railway.app/api/v1`).
-4. **Deploy**: Trigger automated build and deployment.
+1. **Import Repository**: Set Root Directory to `frontend` with the `Vite` framework preset.
+2. **Environment Variables**: Set `VITE_API_URL` pointing to your deployed Railway Backend API.
+3. **Deploy**: Build and trigger automated edge deployment.
 
 ---
 
 ## 🗺️ Future Roadmap
 
-The following features are planned for upcoming releases:
-
-- [ ] 🎤 **Voice-Based Mock Interviews**: Real-time speech-to-text and text-to-speech conversational interview practice.
-- [ ] 📹 **Video Performance Analysis**: AI facial expressions, eye contact, and body language feedback during live answers.
-- [ ] 📄 **Advanced ATS Resume Checker**: Deep formatting audit and keyword density optimization against specific job descriptions.
-- [ ] ⚙️ **Custom Enterprise Company Profiles**: Ability for corporate recruiters to define custom hiring rubrics and interview questions.
-- [ ] 🔁 **Full Interview Replay & Session Timeline**: Audio-visual interactive playback of past interview sessions with timed AI annotations.
-- [ ] 🤖 **AI Personal Career Coach**: Conversational AI mentor offering daily practice schedules and tailored skill guidance.
-- [ ] 📱 **Mobile Application**: Cross-platform React Native mobile app for practice on the go.
+- [ ] 🎤 **Voice-Based Mock Interviews**: Real-time speech-to-text conversational interview practice.
+- [ ] 📹 **Video Performance Analysis**: AI feedback on body language and eye contact during responses.
+- [ ] 📄 **Advanced ATS Resume Matcher**: Deep job description keyword matching.
+- [ ] ⚙️ **Custom Enterprise Rubrics**: Allow recruiters to configure proprietary evaluation pillars.
+- [ ] 🔁 **Interactive Interview Playback**: Timed audio-visual session replay with AI annotations.
+- [ ] 📱 **Mobile Application**: Cross-platform React Native client.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps to contribute:
+Contributions are welcome! Please follow these steps:
 
-1. **Fork the Repository**
-2. **Create a Feature Branch**: `git checkout -b feature/AmazingFeature`
-3. **Commit Your Changes**: `git commit -m 'Add some AmazingFeature'`
-4. **Push to the Branch**: `git push origin feature/AmazingFeature`
-5. **Open a Pull Request**
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-Please ensure all lint checks (`npm run lint`) and builds (`npm run build`) pass cleanly before submitting pull requests.
+Ensure `npm run lint` and `npm run build` pass cleanly before submitting PRs.
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See `LICENSE` for details.
